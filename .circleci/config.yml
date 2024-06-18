@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  test-split:
+    docker:
+      - image: cimg/python:3.9
+    resource_class: small
+    parallelism: 2
+    steps:
+      - checkout
+      - run: circleci tests glob "**/*.py"
+
+workflows:
+  main:
+    jobs:
+      - test-split
